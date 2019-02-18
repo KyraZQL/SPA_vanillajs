@@ -1,0 +1,346 @@
+$font-family: 'Libre Franklin',
+sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Amaranth);
+$font-weight: 700;
+$font-size: 24px;
+$bp-mobile: 400px;
+$bp-tablet: 960px;
+$height-section: 300px;
+$height-section-sm: 200px;
+$height-section-lg: 600px;
+$height-section-xl: 1200px;
+@mixin for-size($size) {
+    @if $size==phone-only {
+        @media only screen and (max-width: $bp-mobile) {
+            @content;
+        }
+    }
+    @else if $size==tablet-up {
+        @media only screen and (min-width: $bp-mobile + 1) {
+            @content;
+        }
+    }
+    @else if $size==desktop-up {
+        @media only screen and (min-width: $bp-tablet + 1) {
+            @content;
+        }
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    border: 0;
+    font-size: 100%;
+    font-family: $font-family;
+    vertical-align: baseline;
+    background-color: white;
+}
+
+video {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+ul {
+    float: right;
+    list-style: none;
+}
+
+li {
+    display: inline;
+    float: left;
+}
+
+nav {
+    width: 100%;
+    margin: 0 auto;
+}
+
+img.logo {
+    float: left;
+}
+
+header {
+    background: black;
+    border-bottom: 1px solid #be2323;
+    float: left;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Amaranth', sans-serif;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+header a.active,
+header a:hover {
+    color: #3d3d3d;
+}
+
+header li {
+    margin-right: 30px;
+}
+
+header.LargeNav {
+    height: 120px;
+}
+
+header.LargeNav img {
+    width: 489px;
+    height: 113px;
+}
+
+header.LargeNav li {
+    margin-top: 45px;
+}
+
+header.SmallNav {
+    height: 50px;
+}
+
+header.SmallNav img {
+    width: 287px;
+    height: 69px;
+    margin-top: -10px;
+}
+
+header.SmallNav li {
+    margin-top: 17px;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: hsla(0, 0%, 100%, .5);
+}
+
+#Outline {
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-image: url('https://wx2.sinaimg.cn/mw690/648ac377gy1fwa42e6zxyj20xc19ye6g.jpg');
+    background-repeat: no-repeat;
+}
+
+.column {
+    column-count: 3;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.card img {
+    width: 100%;
+    margin: 0 auto;
+    border: 10px solid hsla(0, 0%, 100%, .5);
+    background: white;
+    background-clip: padding-box;
+    max-width: 20em;
+    padding: 2em;
+    margin: 2em auto 0;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto 0;
+    @include for-size(desktop-up) {
+        order: 2;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.modal-content img {
+    width: auto;
+    height: auto;
+    max-width: 100vw;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+.close {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#Photo {
+    background-color: black;
+}
+
+.slideshow-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.mySlides img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 90vw;
+    max-height: 100vh;
+    height: auto;
+}
+
+.glass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 1em;
+    max-width: 23em;
+    background: hsla(0, 0%, 100%, .10) border-box;
+    overflow: hidden;
+    border-radius: .3em;
+    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 1px hsla(0, 0%, 100%, .3);
+    z-index: 1;
+}
+
+#Artwork {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin: auto;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-image: url('https://wx4.sinaimg.cn/mw690/74b99ee5gy1g04510b1caj20i2299azl.jpg');
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+#Artwork h2 {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: hsla(0, 0%, 100%, .60);
+    font-size: 20vw;
+    z-index: 1;
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100vw;
+    max-height: 100%;
+}
+
+.main {
+    width: 100%;
+}
+
+.feature {
+    width: 100%;
+    margin: 0 auto;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    z-index: 500;
+    border-top: 1px solid #be2323;
+}
+
+footer a i {
+    font-size: 48px;
+    color: white;
+}
